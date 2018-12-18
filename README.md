@@ -1,12 +1,9 @@
-# 已棄用 DEPRECATED
 
 此專案僅供研究或結構參考用途。
-
 ---
 
 <p align="center">
-  <img src="https://cloud.githubusercontent.com/assets/7308718/21562106/97c9ad20-ceb0-11e6-960a-664fa507bd68.png" alt="kitsvc" width="60">
-  <br><br><strong>KitSvc</strong> 是一個 Go 的單個微服務初始包 <br>提供了 Gin、Consul、Prometheus、EventStore 相關模塊和 Gorm 與 NSQ。（<a href="https://github.com/TeaMeow/KitGate">建議搭配 KitGate</a>）
+  <br><br><strong>GCM</strong> 是一個 Go 的單個微服務初始包 <br>提供了 Gin、Consul、Prometheus、EventStore 相關模塊和 Gorm 與 NSQ。（<a href="https://github.com/TeaMeow/KitGate">建議搭配 KitGate</a>）
 </p>
 
 # 特色
@@ -20,10 +17,10 @@
 
 # 主要結構
 
-KitSvc 是極具獨立性的微服務初始包，能作為單個微服務。基本使用方式與一般網站應用程式相同，但多了數個專門配合微服務的工具。
+GCM 是極具獨立性的微服務初始包，能作為單個微服務。基本使用方式與一般網站應用程式相同，但多了數個專門配合微服務的工具。
 
 ```js
-KitSvc
+GCM
 ├── client               // 客戶端
 ├── errno                // 錯誤代碼
 ├── model                // 資料結構
@@ -52,7 +49,7 @@ KitSvc
 
 # 依賴性
 
-KitSvc 依賴下列服務，請確保你有安裝。
+GCM 依賴下列服務，請確保你有安裝。
 
 * **[Consul](https://www.consul.io/)**
 * **[Prometheus](https://prometheus.io/)**
@@ -62,68 +59,68 @@ KitSvc 依賴下列服務，請確保你有安裝。
 
 # 環境變數設置
 
-為了方便在 Docker 上部署，KitSvc 沒有設定檔，而是透過環境變數來設置。下面這些設置都是預設值，如果你的環境符合這些預設值那麼你就不需要手動宣告，可以直接啟動程式進行測試。
+為了方便在 Docker 上部署，GCM 沒有設定檔，而是透過環境變數來設置。下面這些設置都是預設值，如果你的環境符合這些預設值那麼你就不需要手動宣告，可以直接啟動程式進行測試。
 
 ```bash
 # 服務名稱
-KITSVC_NAME="Service"
+GCM_NAME="Service"
 # 服務暴露網址
-KITSVC_URL="http://127.0.0.1:8080"
+GCM_URL="http://127.0.0.1:8080"
 # 服務位置
-KITSVC_ADDR="127.0.0.1:8080"
+GCM_ADDR="127.0.0.1:8080"
 # 服務埠口
-KITSVC_PORT=8080
+GCM_PORT=8080
 # 服務註釋
-KITSVC_USAGE="Operations about the users."
+GCM_USAGE="Operations about the users."
 # JSON Web Token 的加密密碼
-KITSVC_JWT_SECRET="4Rtg8BPKwixXy2ktDPxoMMAhRzmo9mmuZjvKONGPZZQSaJWNLijxR42qRgq0iBb5"
+GCM_JWT_SECRET="4Rtg8BPKwixXy2ktDPxoMMAhRzmo9mmuZjvKONGPZZQSaJWNLijxR42qRgq0iBb5"
 # Ping 伺服器的最大嘗試次數
-KITSVC_MAX_PING_COUNT=20
+GCM_MAX_PING_COUNT=20
 # 除錯模式
-KITSVC_DEBUG=false
+GCM_DEBUG=false
 
 # 資料庫驅動
-KITSVC_DATABASE_DRIVER="mysql"
+GCM_DATABASE_DRIVER="mysql"
 # 資料庫名稱
-KITSVC_DATABASE_NAME="service"
+GCM_DATABASE_NAME="service"
 # 資料庫主機位置與埠口
-KITSVC_DATABASE_HOST="127.0.0.1:3306"
+GCM_DATABASE_HOST="127.0.0.1:3306"
 # 資料庫帳號
-KITSVC_DATABASE_USER="root"
+GCM_DATABASE_USER="root"
 # 資料庫密碼
-KITSVC_DATABASE_PASSWORD="root"
+GCM_DATABASE_PASSWORD="root"
 # 資料庫字符集
-KITSVC_DATABASE_CHARSET="utf8"
+GCM_DATABASE_CHARSET="utf8"
 # 資料庫時間地區
-KITSVC_DATABASE_LOC="Local"
+GCM_DATABASE_LOC="Local"
 # 是否解析時間
-KITSVC_DATABASE_PARSE_TIME=true
+GCM_DATABASE_PARSE_TIME=true
 
 # 訊息產生者位置
-KITSVC_NSQ_PRODUCER="127.0.0.1:4150"
+GCM_NSQ_PRODUCER="127.0.0.1:4150"
 # 訊息產生者的 HTTP 位置
-KITSVC_NSQ_PRODUCER_HTTP="127.0.0.1:4151"
+GCM_NSQ_PRODUCER_HTTP="127.0.0.1:4151"
 # 訊息中心位置（以無空白 `,` 逗號新增多個位置）
-KITSVC_NSQ_LOOKUPS="127.0.0.1:4161"
+GCM_NSQ_LOOKUPS="127.0.0.1:4161"
 
 # 事件存儲中心的 HTTP 位置
-KITSVC_ES_SERVER_URL="http://127.0.0.1:2113"
+GCM_ES_SERVER_URL="http://127.0.0.1:2113"
 # 事件存儲中心帳號
-KITSVC_ES_USERNAME="admin"
+GCM_ES_USERNAME="admin"
 # 事件存儲中心密碼
-KITSVC_ES_PASSWORD="changeit"
+GCM_ES_PASSWORD="changeit"
 
 # 紀錄的命名空間
-KITSVC_PROMETHEUS_NAMESPACE="service"
+GCM_PROMETHEUS_NAMESPACE="service"
 # 紀錄的服務名稱
-KITSVC_PROMETHEUS_SUBSYSTEM="user"
+GCM_PROMETHEUS_SUBSYSTEM="user"
 
 # 服務中心的健康檢查時間
-KITSVC_CONSUL_CHECK_INTERVAL="30s"
+GCM_CONSUL_CHECK_INTERVAL="30s"
 # 服務中心的健康檢查逾時時間
-KITSVC_CONSUL_CHECK_TIMEOUT="1s"
+GCM_CONSUL_CHECK_TIMEOUT="1s"
 # 服務中心的服務標籤（以無空白 `,` 逗號新增多個位置）
-KITSVC_CONSUL_TAGS="user,micro"
+GCM_CONSUL_TAGS="user,micro"
 ```
 
 # 模塊介紹
@@ -137,33 +134,33 @@ KITSVC_CONSUL_TAGS="user,micro"
 
 **非此套件**
 
-這些功能會在 [KitGate](https://github.com/TeaMeow/KitGate/) 中實作，而不是 KitSvc。
+這些功能會在 [KitGate](https://github.com/TeaMeow/KitGate/) 中實作，而不是 GCM。
 
 * **版本控制（Versioning）**：能夠將舊的微服務替換掉，並且無須停機即可升級至新版本服務。
 * **速率限制（Rate Limiting）**：避免客戶端在短時間內發送大量請求而導致癱瘓。
 
 **未加入**
 
-在 KitSvc 中這些功能沒有被加入，可能是計畫中。
+在 GCM 中這些功能沒有被加入，可能是計畫中。
 
 * **斷路器（Circuit Breaker）**：斷路器能在服務錯誤時果斷拒絕外來請求，並給予一定的時間回復作業。
 
 # 從這開始
 
-請注意，KitSvc 並不能直接透過 `go get` 取得，因此你需要手動 `git clone` 一份回家。順帶記得的是：KitSvc 是一個開發用的模板，而不是套件。
+請注意，GCM 並不能直接透過 `go get` 取得，因此你需要手動 `git clone` 一份回家。順帶記得的是：GCM 是一個開發用的模板，而不是套件。
 
 ```bash
 # 設置環境變數。
 $ export PATH=$PATH:$GOPATH/bin
 
 # 從 Git 上複製一份此倉庫回家。
-$ git clone git@github.com:TeaMeow/KitSvc.git $GOPATH/src/github.com/TeaMeow/KitSvc
-$ cd $GOPATH/src/github.com/TeaMeow/KitSvc
+$ git clone git@github.com:TeaMeow/GCM.git $GOPATH/src/github.com/TeaMeow/GCM
+$ cd $GOPATH/src/github.com/TeaMeow/GCM
 ```
 
 ## 可用指令
 
-KitSvc 有下列指令可供開發環境時使用。
+GCM 有下列指令可供開發環境時使用。
 
 ```bash
 make deps                   # 將依賴性套件複製進 GOPATH
@@ -173,7 +170,7 @@ make run                    # 建置並執行程式
 make build                  # 建置程式
 ```
 
-如果有其他問題可以參考 `.drone.yml` 檔案，該檔案為自動測試環境的設置檔，你可以以此作為 KitSvc 所需的環境、設定依據。
+如果有其他問題可以參考 `.drone.yml` 檔案，該檔案為自動測試環境的設置檔，你可以以此作為 GCM 所需的環境、設定依據。
 
 ## 索引
 
@@ -395,4 +392,4 @@ var (
 
 # License
 
-MIT &copy; [Yami Odymel](https://github.com/YamiOdymel)
+MPLv2.0 &copy; [Brett Cao](https://github.com/BrettCao)
